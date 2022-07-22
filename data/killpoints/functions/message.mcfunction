@@ -1,4 +1,6 @@
-tellraw @s ["",{"text":"Welcome ","color":"green"},{"selector":"@s","color":"gold"},{"text":"!","color":"green"}]
-tellraw @s ["",{"text":"Discord: ","color":"light_purple"},{"text":"discord.gg/hAmxP8P","color":"dark_aqua","underlined":true,"clickEvent":{"action":"open_url","value":"https://discord.gg/hAmxP8P"}}]
-tellraw @s ["",{"text":"Rules: No cheating!","color":"red"},{"text":" (using hacks will result in a permanent ban)","color":"gray"}]
-tellraw @s ["",{"text":"Type ","color":"green"},{"text":"/trigger tp-help","color":"yellow"},{"text":" for teleport commands","color":"green"}]
+# Message
+execute as @a[scores={kpkilled=1..}] at @a[scores={kpkiller=1..}] if score @s kpkillpoints matches 1.. run tellraw @a ["",{"selector":"@p","color":"yellow"},{"text":" got ","color":"gold"},{"text":"+","color":"red"},{"score":{"name":"@s","objective":"kpkillpoints"},"color":"red"},{"text":" bounty points for killing ","color":"gold"},{"selector":"@s","color":"yellow"}]
+
+# Show sidebar for 30 seconds
+scoreboard objectives setdisplay sidebar kpkillpoints
+schedule function killpoints:hidesidebar 30s
